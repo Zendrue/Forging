@@ -1,5 +1,6 @@
 package com.example.examplemod;
 
+import com.example.examplemod.block.ModBlocks;
 import com.example.examplemod.item.ModItems;
 import net.minecraft.client.gui.components.tabs.Tab;
 import org.slf4j.Logger;
@@ -54,6 +55,7 @@ public class ExampleMod
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.resister(modEventBus);
+        ModBlocks.register(modEventBus);
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -69,6 +71,10 @@ public class ExampleMod
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.BISMUTH);
             event.accept(ModItems.RAW_BISMUTH);
+        }
+
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.BISMUTH_BLOCK);
         }
     }
 
